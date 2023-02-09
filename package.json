@@ -3,7 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "start:dev": "nodemon --watch src/ --exec \"yarn serve\" -e ts",
+    "serve": "tsc && node ./bin/www",
+    "compile": "tsc",
+    "test": "jest",
+    "clean": "rm -rf dist && mkdir dist"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -11,6 +16,7 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.20"
   }
 }
