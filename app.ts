@@ -1,5 +1,5 @@
-var createError = require('http-errors');
-var express = require('express');
+import createError from 'http-errors';
+import express from 'express';
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
