@@ -5,7 +5,7 @@ import cookieParser from'cookie-parser';
 import logger from 'morgan';
 
 import indexRouter from './routes/index';
-const usersRouter = require('./routes/users');
+import usersRouter from './routes/users';
 
 const app = express();
 
@@ -35,4 +35,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+export default app;
