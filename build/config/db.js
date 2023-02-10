@@ -9,13 +9,14 @@ const message = process.env.NODE_ENV !== "production"
     : "Successfully connected to MongoDB Local!";
 const connectDB = () => {
     const url = process.env.DATABASE_URL;
+    mongoose_1.default.set("strictQuery", false);
     mongoose_1.default
         .connect(url)
         .then(() => {
-        console.log("info", message);
+        console.log("***", message);
     })
         .catch((error) => {
-        console.log("error", error.message);
+        console.log("*%^*", error.message);
     });
 };
 exports.default = connectDB;

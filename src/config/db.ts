@@ -7,13 +7,14 @@ const message =
 
 const connectDB = () => {
   const url: string = process.env.DATABASE_URL as string;
+  mongoose.set("strictQuery", false);
   mongoose
     .connect(url)
     .then(() => {
-      console.log("info", message);
+      console.log("***", message);
     })
     .catch((error) => {
-      console.log("error", error.message);
+      console.log("*%^*", error.message);
     });
 };
 export default connectDB;
