@@ -3,9 +3,21 @@ import express,{Request, Response} from 'express';
 import path from 'path';
 import cookieParser from'cookie-parser';
 import logger from 'morgan';
-
+import dotenv from "dotenv";
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
+import { dbConnect } from './config/testdb';
+import connectDB from './config/db';
+
+dotenv.config();
+
+//= ======== DB Connect ===========
+if (process.env.NODE_ENV === "test") {
+  dbConnect();
+} else {
+  connectDB();
+}
+
 
 const app = express();
 

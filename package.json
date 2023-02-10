@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
     "debug": "~2.6.9",
     "dotenv": "^16.0.3",
     "express": "~4.16.1",
@@ -20,7 +21,9 @@
     "mongodb-memory-server": "^8.11.4",
     "mongoose": "^6.9.1",
     "morgan": "~1.9.1",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "tsc": "^2.0.4",
+    "typescript": "^4.9.5"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.3",
