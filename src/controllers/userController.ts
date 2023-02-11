@@ -10,7 +10,15 @@ export const registerUser = asyncHandler(async (req: Request, res: Response) => 
         const user = await UserModel.create({
             phone
         })
+
+        if(user){
+            res.status(201).json({
+                message: "User created successfully",
+                user
+            })
+        }
+
      } catch (error) {
-        
+        console.error(error);
      }
 })
