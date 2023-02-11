@@ -8,7 +8,7 @@
     "serve": "tsc && node ./bin/www",
     "compile": "tsc",
     "test": "jest",
-    "clean": "rm -rf dist && mkdir dist"
+    "clean": "rm -rf build && mkdir build"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
