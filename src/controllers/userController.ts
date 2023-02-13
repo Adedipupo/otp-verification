@@ -1,6 +1,13 @@
 import { Request,Response } from "express";
 import asyncHandler from "express-async-handler";
 import { UserModel } from "../models/userModel";
+import twilio from "twilio";
+import randomize from "randomatic";
+
+// Generate a random OTP
+const generateOTP = () => {
+    return randomize("0", 6);
+  };
 
 
 export const registerUser = asyncHandler(async (req: Request, res: Response) => {
