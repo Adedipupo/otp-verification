@@ -12,7 +12,7 @@ const generateOTP = (): string => {
 console.log("OTP", generateOTP());
 
 // Send OTP to the provided phone number using Twilio
-const sendOTP = (otp:String, phoneNumber:String) => {
+const sendOTP = (otp:string, phoneNumber:string) => {
   const client = twilio(
     process.env.TWILIO_ACCOUNT_SID,
     process.env.TWILIO_AUTH_TOKEN
@@ -24,26 +24,22 @@ const sendOTP = (otp:String, phoneNumber:String) => {
       from: process.env.TWILIO_PHONE_NUMBER,
     })
     .then((message) => console.log(message.sid))
-    .done();
 };
+
+
 
 export const registerUser = asyncHandler(
   async (req: Request, res: Response) => {
+    const { phoneNumber } = req.body;
+    const otp = generateOTP();
+  
+    const user = new UserModel({ phoneNumber, otp });
     try {
-      const { phone } = req.body;
-
-      const user = await UserModel.create({
-        phone,
-      });
-
-      if (user) {
-        res.status(201).json({
-          message: "User created successfully",
-          user,
-        });
-      }
+      await user.save();
+      sendOTP(otp, phoneNumber);
+      res.json({ message: "User registered successfully. OTP sent." });
     } catch (error) {
-      console.error(error);
+      res.status(500).json({ error });
     }
   }
 );
