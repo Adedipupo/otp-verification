@@ -9,7 +9,7 @@ const generateOTP = (): string => {
   return randomize("0", 6);
 };
 
-console.log("OTP", generateOTP());
+console.log("OTP1234", generateOTP());
 
 // Send OTP to the provided phone number using Twilio
 const sendOTP = (otp:string, phoneNumber:string) => {
@@ -31,7 +31,20 @@ const sendOTP = (otp:string, phoneNumber:string) => {
 export const registerUser = asyncHandler(
   async (req: Request, res: Response) => {
     const { phoneNumber } = req.body;
+    if (!phoneNumber) {
+        res.status(400)
+        throw new Error('Please provide a valid phone number')
+      }
+    
+      const userExists = await UserModel.findOne({ phoneNumber:String })
+      if (userExists) {
+        res.status(400)
+        throw new Error('Phone number already exists')
+      }
+
     const otp = generateOTP();
+
+    console.log("OTP234", otp);
   
     const user = new UserModel({ phoneNumber, otp });
     try {
