@@ -5,7 +5,7 @@ import twilio from "twilio";
 import randomize from "randomatic";
 
 // Generate a random OTP
-const generateOTP = () => {
+const generateOTP = (): string => {
   return randomize("0", 6);
 };
 
