@@ -1,9 +1,8 @@
 import express from 'express';
+import { registerUser, verifyOtp } from '../controllers/userController';
 const router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource !!!');
-});
+ router.post('/signup', registerUser);
+ router.post('/verify', verifyOtp);
 
 export default router;

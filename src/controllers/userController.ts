@@ -5,7 +5,7 @@ import twilio from "twilio";
 import randomize from "randomatic";
 
 // Generate a random OTP
-const generateOTP = (): string => {
+const generateOTP = ():string => {
   return randomize("0", 6);
 };
 
@@ -56,3 +56,26 @@ export const registerUser = asyncHandler(
     }
   }
 );
+
+export const verifyOtp = asyncHandler(async(req: Request,res:Response):Promise<any | undefined> => {
+    const { phoneNumber, otp } = req.body;
+    if (!phoneNumber || !otp) {
+        res.status(400)
+        throw new Error('Please provide a valid phone number and OTP')
+    }
+
+    try {
+        const user = await UserModel.findOne({ phoneNumber });
+        if (!user) {
+          return res.status(400).json({ message: "User not found." });
+        }
+    
+        if (user.otp !== otp) {
+          return res.status(400).json({ message: "Incorrect OTP." });
+        }
+    
+        res.json({ message: "OTP verified successfully." });
+      } catch (error) {
+        res.status(500).json({ error });
+      }
+});

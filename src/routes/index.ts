@@ -1,9 +1,6 @@
 import express from 'express';
+import usersRoute from "./users";
 const router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.send("Idan")
-});
-
+router.use('/users', usersRoute);
 export default router;

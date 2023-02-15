@@ -5,7 +5,7 @@ import cookieParser from'cookie-parser';
 import logger from 'morgan';
 import dotenv from "dotenv";
 import indexRouter from './routes/index';
-import usersRouter from './routes/users';
+
 import { dbConnect } from './config/testdb';
 import connectDB from './config/db';
 
@@ -28,8 +28,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/v1', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
