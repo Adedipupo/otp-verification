@@ -4,7 +4,7 @@ import path from 'path';
 import cookieParser from'cookie-parser';
 import logger from 'morgan';
 import dotenv from "dotenv";
-import indexRouter from './routes/index';
+import userRoute from './routes/users';
 
 import { dbConnect } from './config/testdb';
 import connectDB from './config/db';
@@ -28,11 +28,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => {
-  res.redirect('/api');
-});
+// app.get('/', (req, res) => {
+//   res.redirect('/api');
+// });
 
-app.use('/api', indexRouter);
+app.use('/users', userRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
