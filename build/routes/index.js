@@ -6,5 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const users_1 = __importDefault(require("./users"));
 const router = express_1.default.Router();
+router.get('/', (req, res) => {
+    res.send('Api server is live');
+});
 router.use('/users', users_1.default);
 exports.default = router;
