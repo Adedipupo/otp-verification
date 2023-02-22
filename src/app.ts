@@ -28,9 +28,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.get('/', (req, res) => {
-//   res.redirect('/api');
-// });
+app.get('/', (req, res) => {
+  res.send("api is live!!!")
+});
 
 app.use('/users', userRoute);
 

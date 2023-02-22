@@ -26,9 +26,9 @@ app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));
 app.use((0, cookie_parser_1.default)());
 app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
-// app.get('/', (req, res) => {
-//   res.redirect('/api');
-// });
+app.get('/', (req, res) => {
+    res.send("api is live!!!");
+});
 app.use('/users', users_1.default);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
